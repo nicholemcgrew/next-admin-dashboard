@@ -1,25 +1,33 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import "./globals.css";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import Navbar from "@/components/Navbar"
+// import Sidebar from "@/components/Sidebar"
+import "./globals.css"
+import Sidebar from "@/components/Sidebar"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard",
-  description: "Admin Dashboard",
-};
+	title: "Admin Dashboard",
+	description: "Admin Dashboard",
+}
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode
 }>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        {children}</body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={inter.className}>
+				<Navbar />
+				<div className="flex">
+					<div className="hidden md:block h-[100vh] w-[300px]">
+						<Sidebar />
+					</div>
+					<div className="p-5 w-full md:max-w-[1140px]">{children}</div>
+				</div>
+			</body>
+		</html>
+	)
 }
